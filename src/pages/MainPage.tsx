@@ -7,19 +7,19 @@ export default function MainPage() {
                 <div className="container-fluid">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <NavLink className="nav-link" activeClassName="active" to="/">Home</NavLink>
+                            <NavLink className="nav-link" to="/">Home</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" activeClassName="active" to="/login">Login</NavLink>
+                            <NavLink className="nav-link" to="/login">Login</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" /*when link is active */ activeClassName="active" to="/fruit">Fruit</NavLink>
+                            <NavLink className="nav-link" /*when link is active */ to="/fruit">Fruit</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" activeClassName="active" to="/vegetables">Vegetables</NavLink>
+                            <NavLink className="nav-link" to="/vegetables">Vegetables</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" activeClassName="active" to="/">Register</NavLink>
+                            <NavLink className="nav-link" to="/">Register</NavLink>
                         </li>
                     </ul>
                 </div>
