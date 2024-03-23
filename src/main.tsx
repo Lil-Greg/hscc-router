@@ -11,6 +11,7 @@ import MainPage from './pages/MainPage.tsx'
 import Fruit from './components/Fruit.tsx'
 import Vegetable from './components/Vegetable.tsx'
 import Register from './pages/RegisterPage.tsx';
+import Pokemon from './components/PokemonPage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,11 @@ const router = createBrowserRouter([
         element: <Register />
       }
     ]
-  }])
+  }, {
+    path: "/pokemon",
+    element: <Pokemon />
+  }
+])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
