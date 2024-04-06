@@ -1,4 +1,7 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from "react";
+
+// Type Casting will give recommendations when typing for productivity
 interface Pokemon{
     name: string,
     url: string
@@ -9,6 +12,7 @@ interface PokemonApiResponse{
     previous: string,
     results: Pokemon[]
 }
+// Anything using type Direction uses previous and next
 type Direction = "previous" | "next"
 
 export default function usePokemonApi(){
@@ -30,4 +34,30 @@ export default function usePokemonApi(){
     }
 
     return{jsonData,pagination}
+}
+
+export function getPokemon(id){
+    const [pokemon, setPokemon] = useState();
+    useEffect(() =>{
+        async function fetchData(){
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+            const data = await response.json();
+            setPokemon(data);
+        }
+        fetchData();
+    }, [id])
+    return pokemon;
+}
+
+export function useSearchPokemon(name){
+    const [pokemon, setPokemon] = useState();
+    useEffect(() =>{
+        async function fetchData(){
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+            const data = await response.json();
+            setPokemon(data);
+        }
+        fetchData();
+    }, [name])
+    return pokemon;
 }

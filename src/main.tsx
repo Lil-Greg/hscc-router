@@ -12,6 +12,8 @@ import Fruit from './components/Fruit.tsx'
 import Vegetable from './components/Vegetable.tsx'
 import Register from './pages/RegisterPage.tsx';
 import Pokemon from './components/PokemonPage.tsx';
+import PokemonID from './components/PokemonID.tsx';
+import SearchPage from './components/SearchPage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -41,7 +43,16 @@ const router = createBrowserRouter([
     ]
   }, {
     path: "/pokemon",
-    element: <Pokemon />
+    element: <Pokemon />,
+    children: [
+      {
+        id: ":id",
+        element: <PokemonID />
+      }
+    ]
+  }, {
+    path: "/search",
+    element: <SearchPage />
   }
 ])
 
