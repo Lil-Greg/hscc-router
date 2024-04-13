@@ -1,18 +1,23 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import useAuth from "../components/hooks/useAuth";
 import React from "react";
+import UserContext from "../context/UserContext";
 
 export default function LoginPage() {
+    const { user, setUser } = useContext(UserContext)
 
     const usernameRef = useRef(null);
     const passwordRef = useRef(null);
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         // event.preventDeault will prevent the page to refresh after the alert
         event.preventDefault();
         const username = usernameRef.current?.value;
         const password = passwordRef.current?.value;
         if (username && password) {
-            useAuth(password, username);
+            const [isAuthorized, user] = await useAuth(password, username);
+            if (isAuthorized) {
+                setUser && setUser(user);
+            }
             alert(`Username: ${username}` + ` Password: ${password}`)
         } else {
             alert(`Please insert value`)
@@ -21,6 +26,7 @@ export default function LoginPage() {
     return (
         // HW: Create Registration Page
         <>
+            {user && user.username}
             <center><h1>Login to inBDPA</h1></center>
             <div className="container">
                 <form onSubmit={handleSubmit}>

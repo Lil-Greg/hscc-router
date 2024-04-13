@@ -14,6 +14,7 @@ import Register from './pages/RegisterPage.tsx';
 import Pokemon from './components/PokemonPage.tsx';
 import PokemonID from './components/PokemonID.tsx';
 import SearchPage from './components/SearchPage.tsx';
+import UserContextProvider from './context/UserContextProvider.tsx';
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <UserContextProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </UserContextProvider>
   </React.StrictMode>
 )

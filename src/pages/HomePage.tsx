@@ -1,7 +1,14 @@
-export default function HomePage(){
-    return(
+export default function HomePage() {
+    return (
         <>
-            <h1>Home</h1>
+            <header>
+                <h1>Home</h1>
+            </header>
+
+            <div className="body">
+                <img src="public/dc.png" alt="HSCC BEST" />
+            </div>
+
         </>
     )
 }
