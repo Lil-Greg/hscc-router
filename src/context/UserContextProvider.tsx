@@ -6,7 +6,8 @@ interface Props {
 }
 
 export default function UserContextProvider({ children }: Props) {
-    const [user, setUser] = useState(null);
+    const defaultUser = JSON.parse(window.localStorage.getItem(user))
+    const [user, setUser] = useState(() => defaultUser);
 
     return <UserContext.Provider value={{ user, setUser }}>
         {children}

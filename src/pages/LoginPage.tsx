@@ -2,9 +2,11 @@ import { useContext, useRef } from "react";
 import useAuth from "../components/hooks/useAuth";
 import React from "react";
 import UserContext from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
-    const { user, setUser } = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext);
+    const navigate = useNavigate();
 
     const usernameRef = useRef(null);
     const passwordRef = useRef(null);
@@ -17,6 +19,8 @@ export default function LoginPage() {
             const [isAuthorized, user] = await useAuth(password, username);
             if (isAuthorized) {
                 setUser && setUser(user);
+                window.localStorage.setItem('user', JSON.stringify(user))
+                navigate('/')
             }
             alert(`Username: ${username}` + ` Password: ${password}`)
         } else {
