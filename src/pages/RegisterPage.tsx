@@ -1,8 +1,46 @@
-import './Register.css'
+import { useState } from 'react';
+import './Register.css';
+import { debounce } from 'lodash';
+
 
 export default function Register() {
+    const url = import.meta.env.VITE_API_URL;
+    const APIkey = import.meta.env.VITE_API_KEY;
+
+    const [isGood, setIsGood] = useState();
+
+    const debounceUser = debounce(async (value) => {
+        alert(value + " Xaedontgotmotion");
+        const options = {
+            headers: {
+                'Authorization': APIkey,
+                'content-type': 'application/json'
+            },
+            body: {
+
+            }
+        }
+        const data = await fetch(`${url}/users/${value}`);
+        const result = await data.json();
+        console.log(result);
+        setIsGood(!result.success);
+        return !result.success;
+    }, 1000)
+
+    const handeUserChange = async (e) => {
+        setIsGood(undefined)
+        await debounceUser(e.target.value)
+    }
+
     return <>
-        <div className="container">
+        <form>
+            <input type="text" id='username' className='box' placeholder='Enter Your Username' onChange={handeUserChange} />
+            {/* If is good is not defined do the following, else? return empty string */}
+            {isGood != undefined ? ((isGood) ? "Username is Good" : "Username is Not Good") : ('')}
+        </form>
+
+
+        {/* <div className="container">
             <div className="row">
                 <div className="col-mod-3">
 
@@ -27,6 +65,6 @@ export default function Register() {
                     </form>
                 </div>
             </div>
-        </div>
+        </div> */}
     </>
 }
